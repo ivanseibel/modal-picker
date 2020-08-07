@@ -53,7 +53,7 @@ const Picker: React.FC<IPickerProps> = ({
     setPickerSelection(value);
     onChange(value);
     setPickerDisplayed(false);
-  }, []);
+  }, [onChange]);
 
   return (
     <View>
