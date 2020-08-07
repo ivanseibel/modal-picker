@@ -21,10 +21,12 @@ export default function App() {
   ]
 
   const selectedFruitLabel = useMemo(() => {
-    const index = selectedFruit || -1;
+    const index = fruits.findIndex(fruit => fruit.value === selectedFruit);
+
     if (index >= 0){
       return fruits[index].label;
     }
+    
   },[selectedFruit, fruits])
 
   return (
@@ -39,11 +41,9 @@ export default function App() {
         />
       </View>
 
-      {selectedFruit && (
         <Text style={styles.footerText} >
-          {`You have been selected: ${selectedFruitLabel}`}
+          {`You have been selected: ${selectedFruitLabel || ''}`}
         </Text>
-      )}
       
       <StatusBar style="auto" />
     </View>

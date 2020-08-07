@@ -21,7 +21,7 @@ interface IPickerProps {
   inputStyle?: StyleProp<ViewStyle>;
   pickerValues: IPickerValuesItem[];
   placeholder?: string;
-  onChange: React.Dispatch<React.SetStateAction<undefined>>;
+  onChange: React.Dispatch<React.SetStateAction<any>>;
 }
 
 const Picker: React.FC<IPickerProps> = ({
