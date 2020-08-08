@@ -3,7 +3,6 @@ import {
   View,
   Modal,
   Text,
-  TouchableHighlight,
   ViewStyle,
   StyleProp,
   TouchableOpacity,
@@ -21,7 +20,7 @@ interface IPickerProps {
   inputStyle?: StyleProp<ViewStyle>;
   pickerValues: IPickerValuesItem[];
   placeholder?: string;
-  onChange: React.Dispatch<React.SetStateAction<any>>;
+  onChange(value: string): void;
 }
 
 const Picker: React.FC<IPickerProps> = ({
@@ -31,7 +30,7 @@ const Picker: React.FC<IPickerProps> = ({
   placeholder = 'Select an option',
   onChange,
 }) => {
-  const [pickerSelection, setPickerSelection] = useState<number | string | null>(null);
+  const [pickerSelection, setPickerSelection] = useState<number | string>();
   const [pickerDisplayed, setPickerDisplayed] = useState(false);
 
   const togglePicker = useCallback(() => {
@@ -49,11 +48,14 @@ const Picker: React.FC<IPickerProps> = ({
     return null;
   }, [pickerSelection, pickerValues]);
 
-  const handlePickerItemClick = useCallback(value => {
-    setPickerSelection(value);
-    onChange(value);
-    setPickerDisplayed(false);
-  }, [onChange]);
+  const handlePickerItemClick = useCallback(
+    value => {
+      setPickerSelection(value);
+      onChange(value);
+      setPickerDisplayed(false);
+    },
+    [onChange],
+  );
 
   return (
     <View>
